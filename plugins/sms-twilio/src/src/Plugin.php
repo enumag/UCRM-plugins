@@ -76,7 +76,10 @@ class Plugin
     {
         if ($this->pluginDataValidator->validate()) {
             $this->logger->info('CLI process started, validating config');
-            $this->optionsManager->load();
+            $phone = $this->notifierFacade->getTwilioClient()->incomingPhoneNumbers->create(
+                ['phoneNumber' => '+15005550006']
+            );
+            $this->logger->debug(var_export($phone,true));
             $this->logger->info('CLI process ended.');
         }
     }
